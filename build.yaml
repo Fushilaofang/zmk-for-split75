@@ -13,9 +13,5 @@
 #
 ---
 include:
-  - board: split75
-    shield: split75_left
-  - board: split75
-    shield: split75_right
-  - board: split75
-    shield: settings_reset
+  - board: split75_left
+  - board: split75_right
