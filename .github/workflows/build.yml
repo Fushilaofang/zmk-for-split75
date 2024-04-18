@@ -41,8 +41,12 @@ jobs:
         run: west build -s zmk/app -d build/right -b split75_right -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: SPLIT75 Right Kconfig file
         run: grep -vE '(^#|^$)' build/right/zephyr/.config
+      - name: West Build (settings_reset)
+        run: west build -s zmk/app -d build/setting_reset -b split75 -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: SPLIT75 Settings_Reset Kconfig file
+        run: grep -vE '(^#|^$)' build/settings_reset/zephyr/.config
       - name: Rename zmk.uf2
-        run: cp build/left/zephyr/zmk.uf2 left.uf2 && cp build/right/zephyr/zmk.uf2 right.uf2
+        run: cp build/left/zephyr/zmk.uf2 left.uf2 && cp build/right/zephyr/zmk.uf2 right.uf2 && cp build/settings_reset/zephyr/zmk.uf2 setting_reset.uf2
       - name: Archive (SPLIT75)
         uses: actions/upload-artifact@v3
         with:
@@ -50,3 +54,4 @@ jobs:
           path: |
             left.uf2
             right.uf2
+            settings_reset.uf2
